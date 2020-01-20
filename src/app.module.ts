@@ -18,13 +18,13 @@ import { AdminModule } from './module/admin/admin.module';
 // 新增
 export class AppModule implements NestModule {
 	configure(consumer: MiddlewareConsumer) {
-		consumer
-			.apply(LogMiddleware)
+		// consumer
+			// .apply(LogMiddleware)
 			// 匹配所有路由
 			// .forRoutes('*')
 
 			// 按路由和方法匹配：GET/POST
-			.forRoutes({ path: 'news', method: RequestMethod.ALL })
+			// .forRoutes({ path: 'news', method: RequestMethod.ALL })
 
 			// 可以支持多个对象
 			// .forRoutes({ path: 'news', method: RequestMethod.ALL }, { path: 'articles', method: RequestMethod.ALL })

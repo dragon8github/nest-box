@@ -6,14 +6,17 @@ import { Controller, Get, Post, Render, Body, Query, Param,
 	UseInterceptors, UploadedFile,
 	// 管道
 	UsePipes,
+	// 守卫
+	UseGuards,
 } from '@nestjs/common';
 
 // 上传需要的装饰器（单图上传和多图上传）
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express'
-
 // 引入管道
 import { NewsPipe } from '../pipe/news.pipe'
 
+// 引入守卫
+import { AuthGuard } from '../guard/auth.guard'
 
 // 9位 简易版
 const MdUuid = () => Math.random().toString(36).slice(4)
@@ -26,6 +29,12 @@ export class NewsController {
 		return {
 			// ...
 		}
+	}
+
+	@Get('test')
+	@UseGuards(AuthGuard)
+	test() {
+		return '测试守卫'
 	}
 
 	@Get('list')
