@@ -10,6 +10,7 @@ import { Controller, Get, Post, Render, Body, Query, Param,
 	UseGuards,
 } from '@nestjs/common';
 
+
 // 上传需要的装饰器（单图上传和多图上传）
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express'
 // 引入管道
@@ -23,6 +24,7 @@ const MdUuid = () => Math.random().toString(36).slice(4)
 
 @Controller('news')
 export class NewsController {
+
 	@Get()
 	@Render('default/form')
 	index() {

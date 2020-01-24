@@ -1,21 +1,23 @@
-// 新增
 import { Module, NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ActicleController } from './acticle/acticle.controller';
-import { NewsService } from './news/news.service';
 import { NewsController } from './news/news.controller';
 
 import { LogMiddleware } from './middleware/log.middleware'
 import { AdminModule } from './module/admin/admin.module';
 
-@Module({
-  imports: [AdminModule],
-  controllers: [AppController, ActicleController, NewsController],
-  providers: [AppService, NewsService],
-})
+import { MongooseModule } from '@nestjs/mongoose'
 
-// 新增
+
+@Module({
+  imports: [
+  	AdminModule, 
+  	MongooseModule.forRoot('mongodb://eggadmin:123456@localhost:27017/eggcms',{ useNewUrlParser: true }),
+  ],
+  controllers: [AppController, ActicleController, NewsController],
+  providers: [AppService],
+})
 export class AppModule implements NestModule {
 	configure(consumer: MiddlewareConsumer) {
 		// consumer
